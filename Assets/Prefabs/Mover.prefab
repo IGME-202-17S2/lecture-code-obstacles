@@ -86,13 +86,11 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   heading: {x: 0, y: 0, z: 0}
   objectManager: {fileID: 0}
-  mu: 0.01
   mass: 3
-  elasticity: 0.9
+  lookAhead: 0
   maxSpeed: 1
   maxTurn: 0.25
   radius: 0.5
-  target: {fileID: 0}
 --- !u!212 &212235481361195512
 SpriteRenderer:
   m_ObjectHideFlags: 1

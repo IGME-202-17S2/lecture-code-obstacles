@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Seeker : Mover {
 
+	Vector3 steerForce;
+
 	protected override void Start () {
 		base.Start ();
 		mass = 3f;
@@ -17,7 +19,7 @@ public class Seeker : Mover {
 
 	protected override void CalcSteeringForces ()
 	{
-		Vector3 steerForce = Vector3.zero;
+		steerForce = Vector3.zero;
 
 		Vector3 avoidForce = AvoidObstacles ();
 
@@ -32,5 +34,21 @@ public class Seeker : Mover {
 		steerForce = VectorHelper.Clamp (steerForce, maxTurn);
 
 		ApplyForce (steerForce);
+	}
+
+	void OnRenderObject() {
+		ColorHelper.black.SetPass (0);
+
+		GL.Begin (GL.LINES);
+		GL.Vertex ( this.position );
+		GL.Vertex ( this.position + this.heading );
+		GL.End ();
+
+		ColorHelper.green.SetPass (0);
+
+		GL.Begin (GL.LINES);
+		GL.Vertex ( this.position );
+		GL.Vertex ( this.position + this.steerForce );
+		GL.End ();
 	}
 }
